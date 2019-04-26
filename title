@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# get fn
+#if [ $# -lt 1]; then
+#  echo "至少包含一个参数，指定文件名"
+#  echo "Usage: title file_name [-l language] [-a author]"
+#fi
+
+# get args
+lan="python3"
+author="spgoal"
+dt=`date +"%a, %b/%d/%G, %H:%M:%S"`
+while getopts ":l:a:" opt
+do
+  case $opt in
+    l)
+    lan=$OPTARG
+    ;;
+    a)
+    author=$OPTARG
+    ;;
+    ?)
+    echo "未知参数，请使用-l指定语言(language)，-a指定作者(author)"
+    exit 1;;
+  esac
+done
+
+s="/***************************************\n"
+s=$s"Author: $author\n"
+s=$s"Date: $dt\n"
+s=$s"Lang: $lan\n"
+s=$s"***************************************/\n"
+echo -e $s
