@@ -25,9 +25,17 @@ do
   esac
 done
 
-s="/***************************************\n"
-s=$s"Author: $author\n"
-s=$s"Date: $dt\n"
-s=$s"Lang: $lan\n"
-s=$s"***************************************/\n"
+s=""
+if [[ $lan =~ "py" ]]; then
+  s=$s"# Author: $author\n"
+  s=$s"# Date: $dt\n"
+  s=$s"# Lang: $lan\n"
+elif [[ $lan =~ "c" ]]; then
+  s=$s"/***************************************\n"
+  s=$s"Author: $author\n"
+  s=$s"Date: $dt\n"
+  s=$s"Lang: $lan\n"
+  s=$s"***************************************/\n"
+fi
+
 echo -e $s
